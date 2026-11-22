@@ -1,38 +1,55 @@
-def calculer_n_elu(g, q):
-    """Calcule l'effort normal ultime N_ELU = 1.35*G + 1.50*Q."""
-    return 1.35 * g + 1.50 * q
+def calculer_n_elu(G, Q):
+    return 1.35 * G + 1.5 * Q
+
+
+def calculer_n_els(G, Q):
+    return G + Q
+
 
 def calculer_poteau(projet):
-    """Calcule N_ELU et la section théorique pour chaque type de poteau."""
+    """Calcule la charge ELU de chaque type de poteau."""
+
     if not projet:
         print("Veuillez d'abord saisir ou charger un projet.")
         return
 
     for type_poteau, donnees in projet["poteaux"].items():
-        n_elu = calculer_n_elu(donnees["G"], donnees["Q"])
-        section = n_elu / 10000
 
-        donnees["N_ELU"] = n_elu
-        donnees["section"] = section
+        n_elu = calculer_n_elu(donnees["G"], donnees["Q"])
 
         print(f"\nPoteau : {type_poteau}")
-        print(f"N_ELU : {round(n_elu, 2)} kN")
-        print(f"Section minimale : {round(section, 4)} m2")
+        print(f"Charge ELU : {round(n_elu, 2)} kN")
+
 
 def descente_charges(projet):
-    """Calcule et affiche la descente de charges globale du bâtiment."""
+    """Affiche les charges de chaque type de poteau."""
+
     if not projet:
         print("Veuillez d'abord saisir ou charger un projet.")
         return
 
     total = 0
+
+    print("\n===== DESCENTE DE CHARGES =====")
+
     for type_poteau, donnees in projet["poteaux"].items():
-        n_elu = calculer_n_elu(donnees["G"], donnees["Q"])
-        charge = n_elu * donnees["nombre"]
-        total += charge
+
+        G = donnees["G"]
+        Q = donnees["Q"]
+        nombre = donnees["nombre"]
+
+        n_elu = calculer_n_elu(G, Q)
+        n_els = calculer_n_els(G, Q)
+
+        charge_totale = n_elu * nombre
+        total += charge_totale
 
         print(f"\nPoteau : {type_poteau}")
-        print(f"Charge unitaire (N_ELU) : {round(n_elu, 2)} kN")
-        print(f"Charge totale ({donnees['nombre']} poteaux) : {round(charge, 2)} kN")
+        print(f"Nombre : {nombre}")
+        print(f"G : {G} kN")
+        print(f"Q : {Q} kN")
+        print(f"N_ELU : {round(n_elu, 2)} kN")
+        print(f"N_ELS : {round(n_els, 2)} kN")
+        print(f"Charge totale : {round(charge_totale, 2)} kN")
 
-    print(f"\n>>> CHARGE TOTALE DU PROJET : {round(total, 2)} kN")
+    print("\nCharge totale du projet :", round(total, 2), "kN")

@@ -1,0 +1,22 @@
+{
+    "nom": "Projet Final_GenieCivilL2 ",
+    "hauteur": 5.0,
+    "epaisseur": 0.4,
+    "poteaux": {
+        "Angle": {
+            "G": 80.0,
+            "Q": 40.0,
+            "nombre": 4
+        },
+        "Rive": {
+            "G": 120.0,
+            "Q": 60.0,
+            "nombre": 8
+        },
+        "Central": {
+            "G": 150.0,
+            "Q": 75.0,
+            "nombre": 4
+        }
+    }
+}
