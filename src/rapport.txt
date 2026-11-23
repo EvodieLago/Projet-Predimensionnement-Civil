@@ -1,0 +1,28 @@
+=========================================
+ RAPPORT DE PREDIMENSIONNEMENT - IIT
+=========================================
+Projet : Predimentionnement_projet
+Hauteur : 5.0 m
+Epaisseur semelle : 0.4 m
+
+--- Poteau : Angle ---
+Nombre : 4
+N_ELU : 168.00 kN
+Cote poteau : 20 cm
+Cote semelle : 0.80 m
+
+--- Poteau : Rive ---
+Nombre : 8
+N_ELU : 252.00 kN
+Cote poteau : 20 cm
+Cote semelle : 1.00 m
+
+--- Poteau : Central ---
+Nombre : 4
+N_ELU : 315.00 kN
+Cote poteau : 20 cm
+Cote semelle : 1.10 m
+
+--- ESTIMATION FINANCIERE ---
+Volume total : 9.360 m3
+Montant total : 9360 FCFA
